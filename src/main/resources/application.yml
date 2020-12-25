@@ -1,0 +1,24 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: rocketmq-demo
+
+rocketmq:
+  groupName: rocketMQT
+  namesrvAddr: ${NAMESRVADDR:127.0.0.1}:${MQPORT:9876}
+  producer:
+    ## 消息最大大小 默认4M
+    maxMessageSize: 4096
+    ## 消息发送超时时间,默认3秒
+    sendMsgTimeout: 3000
+    ## 消息发送失败重试次数,默认2次
+    retryTimesWhenSendFailed: 2
+  consumer:
+    consumeThreadMin: 20
+    consumeThreadMax: 64
+    ##  ~* 标志为了注册 监听 * 的tag主题使用, 默认所有 topic后缀都需要加
+    topics: DemoTopic~*;AsyncTopic~*;OnewayTopic~*;OrderTopic~*;ScheduledTopic~*;BatchTopic~*;
+    consumeMessageBatchMaxSize: 1
+
+
